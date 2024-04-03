@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap CSS -->
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <title>Demo Spring MVC</title>
+    <title th:text="${msg}"></title>
 
     <style>
         html,body{
@@ -54,7 +54,24 @@
     </div>
 </nav>
 <div class="container">
-    <h1 th:text="${msg}"></h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.code}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 
