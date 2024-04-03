@@ -1,5 +1,6 @@
 package com.haniffaizh.demomvc.controllers;
 
+import com.haniffaizh.demomvc.dto.SearchFormData;
 import com.haniffaizh.demomvc.entity.Product;
 import com.haniffaizh.demomvc.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class HomeController {
         // doing something
         String messages = "Welcome to Spring MVC with kelaskoding";
         model.addAttribute("msg", messages);
+        model.addAttribute("searchForm", new SearchFormData());
         model.addAttribute("products", productService.findAll());
         return "index";
     }
@@ -54,6 +56,15 @@ public class HomeController {
     public String update(Product product){
         productService.updateProduct(product);
         return "redirect:/";
+    }
+
+    @PostMapping("/search")
+    public String search(SearchFormData searchFormData, Model model){
+        String messages = "Welcome to Spring MVC with kelaskoding";
+        model.addAttribute("msg", messages);
+        model.addAttribute("searchForm", searchFormData);
+        model.addAttribute("products", productService.findByName(searchFormData.getKeyword()));
+        return "index";
     }
 
 }
