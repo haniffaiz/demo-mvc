@@ -1,9 +1,19 @@
 package com.haniffaizh.demomvc.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tbl_product")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(length = 10, nullable = false, unique = true)
     private String code;
+
+    @Column(length = 150, nullable = false)
     private String name;
     private double price;
 
